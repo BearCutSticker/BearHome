@@ -10,14 +10,14 @@ logger:
 # Enable Home Assistant API
 api:
   encryption:
-    key: "jV+/jNlN5UT/m7I2Pe1uOBt98wvnsFtVhx2ncRyMN2I="
+    key: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx="
 
 ota:
-  password: "e7a82de198852f05d5add22139cd9967"
+  password: "xxxxxxxxxxxxxxxxx"
 
 wifi:
-  ssid: "Bear_AP"
-  password: "88888888"
+  ssid: "xxxxxxxxxx"
+  password: "xxxxxxxxxxx"
   manual_ip:
     static_ip: 192.168.1.232
     gateway: 192.168.1.1
@@ -26,7 +26,7 @@ wifi:
   # Enable fallback hotspot (captive portal) in case wifi connection fails
   ap:
     ssid: "Esp8622-Tft-232 Fallback Hotspot"
-    password: "2kx9bSc5HoB5"
+    password: "xxxxxxxxxxxxxxx"
 
 captive_portal:
 
