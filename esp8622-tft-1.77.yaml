@@ -1,0 +1,82 @@
+esphome:
+  name: esp8622-tft-232
+
+esp8266:
+  board: esp01_1m
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+  encryption:
+    key: "jV+/jNlN5UT/m7I2Pe1uOBt98wvnsFtVhx2ncRyMN2I="
+
+ota:
+  password: "e7a82de198852f05d5add22139cd9967"
+
+wifi:
+  ssid: "Bear_AP"
+  password: "88888888"
+  manual_ip:
+    static_ip: 192.168.1.232
+    gateway: 192.168.1.1
+    subnet: 255.255.255.0
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "Esp8622-Tft-232 Fallback Hotspot"
+    password: "2kx9bSc5HoB5"
+
+captive_portal:
+
+spi:
+  clk_pin: GPIO14
+  mosi_pin: GPIO13
+  miso_pin: GPIO12
+
+time:
+  - platform: homeassistant
+    id: esptime
+
+font:
+  - file: 'Orbitron-VariableFont_wght.ttf'
+    id: font1
+    size: 15
+color:
+  - id: medium_gray
+    white: 50%
+  - id: my_red
+    red: 100%
+    green: 0%
+    blue: 0%
+
+display:
+  - platform: st7735
+    model: "INITR_18BLACKTAB"
+    # reset_pin: GPIO2
+    cs_pin: GPIO4
+    dc_pin: GPIO5
+    rotation: 0
+    device_width: 128
+    device_height: 160
+    col_start: 0
+    row_start: 0
+    eight_bit_color: true
+    update_interval: 1s
+    pages: 
+      - id: page1 
+        lambda: |-
+          it.strftime(2, 8, id(font1), "%H:%M", id(esptime).now());
+          it.image(2, 25, id(my_image));
+
+switch:
+  - platform: gpio
+    name: "Relay"
+    pin: GPIO2
+
+image:
+  - file: "qr-code.jpg"
+    id: my_image
+    resize: 122x122
+    type: RGB565
